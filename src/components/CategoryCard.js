@@ -8,8 +8,8 @@ export default function CategoryCard({ category }) {
       href={`/category/${category.slug}`}
       className="group flex flex-col items-center text-center rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-brand-200 transition"
     >
-      <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-brand-50 text-brand-700 group-hover:bg-brand-100 transition">
-        <CategoryIcon name={category.icon} className="h-8 w-8" />
+      <div className="mb-4 flex h-16 w-16 items-center justify-center text-brand-600 group-hover:text-brand-700 transition">
+        <CategoryIcon name={category.icon} className="h-10 w-10" />
       </div>
       <h3 className="font-semibold text-gray-900 leading-snug">{category.name}</h3>
       <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand-700 group-hover:gap-2 transition-all">

@@ -9,11 +9,11 @@ export default function Footer() {
     <footer className="mt-16 bg-brand-900 text-brand-100">
       <div className="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-700 text-white">
-              <Leaf className="h-5 w-5" />
+          <div className="flex items-center gap-3">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-700 text-white">
+              <Leaf className="h-6 w-6" />
             </span>
-            <span className="font-extrabold tracking-wide text-white">SLATCH PHARMACEUTICALS</span>
+            <span className="text-lg font-extrabold tracking-wide text-white">SLATCH PHARMACEUTICALS</span>
           </div>
           <p className="mt-4 text-sm text-brand-200">
             Pakistan&apos;s trusted herbal medicine brand, serving families with time-tested

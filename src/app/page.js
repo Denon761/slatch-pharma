@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Leaf } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import HomeSearch from "@/components/HomeSearch";
 import CategoryCard from "@/components/CategoryCard";
 import { categories } from "@/lib/data";
@@ -8,13 +8,13 @@ export default function HomePage() {
   return (
     <div>
       <section className="bg-gradient-to-b from-brand-50 to-white">
-        <div className="container-page grid grid-cols-1 lg:grid-cols-2 gap-10 items-center py-14">
-          <div>
+        <div className="container-page py-14">
+          <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">
               <span className="text-brand-800">Trusted Formulations. </span>
               <br />
               <span className="text-gray-900">Modern Healthcare.</span>
-           
+
             </h1>
             <p className="mt-5 text-gray-600 max-w-md">
               Find the right product by disease or search directly by medicine name or
@@ -35,27 +35,6 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-
-          <div className="relative">
-            <div className="rounded-3xl bg-white border border-brand-100 shadow-sm p-8 flex flex-wrap items-center justify-center gap-4">
-              {["QD 536", "QD 3068", "QD 192", "QD 560"].map((code) => (
-                <div
-                  key={code}
-                  className="flex h-28 w-20 flex-col items-center justify-end rounded-md bg-gradient-to-b from-brand-100 to-brand-50 border border-brand-200 p-2 text-center"
-                >
-                  <Leaf className="h-5 w-5 text-brand-500 mb-auto" />
-                  <span className="text-[10px] font-bold text-brand-800">{code}</span>
-                </div>
-              ))}
-            </div>
-            <span className="absolute -top-4 -right-4 rounded-full bg-white border border-brand-200 shadow-sm px-4 py-2 text-center text-xs font-semibold text-brand-800">
-              More Than
-              <br />
-              40 Years of
-              <br />
-              Herbal Service
-            </span>
-          </div>
         </div>
 
         <div className="container-page pb-14">
@@ -72,7 +51,7 @@ export default function HomePage() {
           for it.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category) => (
             <CategoryCard key={category.slug} category={category} />
           ))}

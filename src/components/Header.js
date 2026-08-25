@@ -36,24 +36,23 @@ export default function Header() {
         <div className="container-page flex flex-wrap items-center justify-center sm:justify-between gap-1 py-1.5">
           <span>Pakistan&apos;s Trusted Herbal Medicine Website</span>
           <span className="hidden sm:inline">40+ Years of Herbal Service</span>
-          <span className="hidden md:inline">Available Through Medical Stores Across Pakistan</span>
         </div>
       </div>
 
       <div className="border-b border-gray-100">
         <div className="container-page flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-700 text-white">
-              <Leaf className="h-5 w-5" />
+          <Link href="/" className="flex items-center gap-3 shrink-0">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 text-white">
+              <Leaf className="h-7 w-7" />
             </span>
             <span className="leading-tight">
-              <span className="block font-extrabold tracking-wide text-brand-800 text-lg">
+              <span className="block font-extrabold tracking-wide text-brand-800 text-2xl">
                 SLATCH
               </span>
-              <span className="block text-[10px] font-semibold tracking-wider text-gray-500 -mt-1">
+              <span className="block text-xs font-semibold tracking-wider text-gray-500 -mt-1">
                 PHARMACEUTICALS<sup>&reg;</sup>
               </span>
-              <span className="block text-[10px] text-brand-600 -mt-0.5">Herbal Medicines</span>
+              <span className="block text-xs text-brand-600 -mt-0.5">Herbal Medicines</span>
             </span>
           </Link>
 
