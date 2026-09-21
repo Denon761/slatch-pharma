@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Leaf, Phone, Mail, MapPin } from "lucide-react";
+import { Leaf } from "lucide-react";
 import { categories } from "@/lib/data";
 
 export default function Footer() {
@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <footer className="mt-16 bg-brand-900 text-brand-100">
-      <div className="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-700 text-white">
@@ -44,24 +44,6 @@ export default function Footer() {
             <li><Link href="/policies/privacy-policy" className="text-brand-200 hover:text-white transition">Privacy Policy</Link></li>
             <li><Link href="/policies/terms-and-conditions" className="text-brand-200 hover:text-white transition">Terms &amp; Conditions</Link></li>
             <li><Link href="/policies/shipping-returns" className="text-brand-200 hover:text-white transition">Shipping &amp; Returns</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-semibold text-white">Contact</h4>
-          <ul className="mt-4 space-y-3 text-sm text-brand-200">
-            <li className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
-              <span>123 Herbal Avenue, Lahore, Pakistan</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone className="h-4 w-4 shrink-0" />
-              <span>+92 300 1234567</span>
-            </li>
-            <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4 shrink-0" />
-              <span>support@slatchpharma.com</span>
-            </li>
           </ul>
         </div>
       </div>
