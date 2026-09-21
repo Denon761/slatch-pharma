@@ -16,8 +16,10 @@ export default function Footer() {
             <span className="text-lg font-extrabold tracking-wide text-white">SLATCH PHARMACEUTICALS</span>
           </div>
           <p className="mt-4 text-sm text-brand-200">
-            Pakistan&apos;s trusted herbal medicine brand, serving families with time-tested
-            herbal formulations for more than 40 years.
+            Slatch Pharmaceuticals® is a herbal medicines marketing and distribution company
+            dedicated to making established herbal medicines more accessible to customers
+            across Pakistan through professional marketing, reliable distribution, clear
+            product information, and a transparent retail experience.
           </p>
         </div>
 
