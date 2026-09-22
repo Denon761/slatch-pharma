@@ -2,8 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import CategoryIcon from "@/components/CategoryIcon";
-import ProductCard from "@/components/ProductCard";
-import { categories, getCategoryBySlug, getProductsByCategory } from "@/lib/data";
+import { categories, getCategoryBySlug } from "@/lib/data";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
@@ -24,7 +23,7 @@ export default async function CategoryPage({ params }) {
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const items = getProductsByCategory(slug);
+  const children = Array.isArray(category.children) ? category.children : [];
 
   return (
     <div className="container-page py-10">
@@ -37,7 +36,10 @@ export default async function CategoryPage({ params }) {
       </nav>
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-brand-50 border border-brand-100 p-6">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-700 text-white">
+        <span
+          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white"
+          style={{ backgroundColor: category.color }}
+        >
           <CategoryIcon name={category.icon} className="h-7 w-7" />
         </span>
         <div>
@@ -46,23 +48,19 @@ export default async function CategoryPage({ params }) {
         </div>
       </div>
 
-      <p className="mt-8 text-sm text-gray-500">
-        {items.length} medicine{items.length !== 1 ? "s" : ""} found
-      </p>
-
-      {items.length > 0 ? (
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {items.map((product) => (
-            <ProductCard key={product.slug} product={product} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-4 rounded-2xl border border-dashed border-gray-200 p-10 text-center text-gray-500">
-          No medicines listed for this condition yet. Please check back soon or{" "}
-          <Link href="/contact" className="text-brand-700 font-medium hover:underline">
-            contact us
-          </Link>{" "}
-          for guidance.
+      {children.length > 0 && (
+        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Level 2 Conditions</h2>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {children.map((child) => (
+              <span
+                key={child}
+                className="rounded-full border border-brand-100 bg-brand-50 px-3 py-1.5 text-sm text-brand-700"
+              >
+                {child}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>
