@@ -7,7 +7,7 @@ import { categories } from "@/lib/data";
 export default function HomePage() {
   return (
     <div>
-      <section className="bg-gradient-to-b from-brand-50 to-white">
+      <section className="bg-white">
         <div className="container-page py-14">
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">
@@ -29,7 +29,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/health-conditions"
-                className="inline-flex items-center gap-1 rounded-lg border border-gray-300 px-5 py-3 font-semibold text-gray-800 hover:border-brand-400 hover:text-brand-800 transition"
+                className="inline-flex items-center gap-1 rounded-lg border border-brand-200 px-5 py-3 font-semibold text-brand-800 hover:border-brand-400 transition"
               >
                 View Health Conditions
               </Link>
