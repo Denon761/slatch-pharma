@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
@@ -36,12 +37,24 @@ export default async function CategoryPage({ params }) {
       </nav>
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-brand-50 border border-brand-100 p-6">
-        <span
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white"
-          style={{ backgroundColor: category.color }}
-        >
-          <CategoryIcon name={category.icon} className="h-7 w-7" />
-        </span>
+        {category.image ? (
+          <span className="flex h-20 shrink-0 items-center">
+            <Image
+              src={category.image.src}
+              alt={category.name}
+              width={category.image.width}
+              height={category.image.height}
+              className="h-full w-auto"
+            />
+          </span>
+        ) : (
+          <span
+            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-white"
+            style={{ backgroundColor: category.color }}
+          >
+            <CategoryIcon name={category.icon} className="h-7 w-7" />
+          </span>
+        )}
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{category.name}</h1>
           <p className="mt-1 text-sm text-gray-600 max-w-2xl">{category.description}</p>
