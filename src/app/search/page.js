@@ -26,7 +26,7 @@ export default async function SearchPage({ searchParams }) {
       {categories.length > 0 && (
         <div className="mt-8">
           <h2 className="text-lg font-semibold text-gray-900">Health Conditions</h2>
-          <div className="mt-4 grid grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((c) => (
               <CategoryCard key={c.slug} category={c} />
             ))}
