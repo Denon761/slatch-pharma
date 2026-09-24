@@ -154,6 +154,7 @@ export const products = [
   {
     slug: "bdk-razont-capsule",
     name: "BDK Razont Capsule",
+    shortName: "BDK Razont Cap",
     qd: "QD 3068",
     category: "digestive-stomach-disorders",
     images: [

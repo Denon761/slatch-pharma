@@ -69,10 +69,9 @@ export default async function ProductPage({ params }) {
               {category.name}
             </Link>
           )}
-          <h1 className="mt-2 text-3xl font-bold text-gray-900">{product.name}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {product.qd} &middot; {product.form} &middot; {product.size}
-          </p>
+          <h1 className="mt-2 text-3xl font-bold text-gray-900">
+            {product.shortName || product.name} {product.qd}
+          </h1>
           <p className="mt-4 text-2xl font-extrabold text-brand-800">
             {formatPKR(product.price)}
           </p>
