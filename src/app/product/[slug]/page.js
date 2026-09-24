@@ -122,6 +122,30 @@ export default async function ProductPage({ params }) {
             )}
           </div>
 
+          <div className="mt-8 border-t border-gray-100 pt-6">
+            <h3 className="font-semibold text-gray-900">Product Information</h3>
+            <dl className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+              <div>
+                <dt className="inline text-gray-500">Product Name: </dt>
+                <dd className="inline text-gray-800">{product.name}</dd>
+              </div>
+              <div>
+                <dt className="inline text-gray-500">Product Code: </dt>
+                <dd className="inline text-gray-800">{product.qd}</dd>
+              </div>
+              {product.productCategory && (
+                <div>
+                  <dt className="inline text-gray-500">Category: </dt>
+                  <dd className="inline text-gray-800">{product.productCategory}</dd>
+                </div>
+              )}
+              <div>
+                <dt className="inline text-gray-500">Pack Size: </dt>
+                <dd className="inline text-gray-800">{product.size}</dd>
+              </div>
+            </dl>
+          </div>
+
           {(product.regulatory || product.manufacturedBy || product.marketedBy) && (
             <div className="mt-8 border-t border-gray-100 pt-6">
               <h3 className="font-semibold text-gray-900">Regulatory & Manufacturing Information</h3>
@@ -157,12 +181,26 @@ export default async function ProductPage({ params }) {
             </div>
           )}
 
+          {product.importantNote && (
+            <div className="mt-8 border-t border-gray-100 pt-6">
+              <h3 className="font-semibold text-gray-900">Important Note</h3>
+              <p className="mt-1 text-sm text-gray-600">{product.importantNote}</p>
+            </div>
+          )}
+
           <p className="mt-6 text-xs text-gray-400">
             This information is provided for general awareness only and does not
             replace professional medical advice. Please consult a physician before use.
           </p>
         </div>
       </div>
+
+      {product.tagline && (
+        <div className="mt-12 rounded-2xl bg-brand-700 text-white px-6 py-8 text-center md:px-12">
+          <h2 className="text-xl md:text-2xl font-bold">{product.tagline.title}</h2>
+          <p className="mt-2 text-sm md:text-base text-brand-50">{product.tagline.text}</p>
+        </div>
+      )}
 
       {related.length > 0 && (
         <div className="mt-16">

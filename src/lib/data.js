@@ -164,6 +164,7 @@ export const products = [
     price: 999,
     form: "Capsule",
     size: "20 Capsules",
+    productCategory: "Herbal Medicine",
     description:
       "BDK Razont Capsule is a DRAP registered herbal medicine specially formulated for individuals experiencing piles (hemorrhoids) related pain, discomfort and irritation. It contains a combination of traditionally used herbal ingredients designed to provide supportive relief from piles-related symptoms and help improve daily comfort.",
     indication: "For the relief of piles (hemorrhoids) pain and associated discomfort.",
@@ -185,6 +186,12 @@ export const products = [
     manufacturedBy: "BDK Laboratories",
     marketedBy: "Slatch Pharmaceuticals, Sialkot",
     storage: "Store in a cool and dry place, away from direct sunlight. Keep out of reach of children.",
+    importantNote:
+      "Use this medicine according to the recommended dosage or advice of a qualified healthcare professional. If symptoms persist or worsen, consult your physician.",
+    tagline: {
+      title: "BDK Razont Capsule Herbal Support for Piles Pain Relief",
+      text: "Specially formulated to help relieve piles-related pain and discomfort and support better daily comfort.",
+    },
   },
 ];
 
