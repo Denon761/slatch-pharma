@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
-import ProductImage from "@/components/ProductImage";
+import ProductGallery from "@/components/ProductGallery";
 import AddToCartButton from "@/components/AddToCartButton";
 import ProductCard from "@/components/ProductCard";
 import {
@@ -53,7 +53,12 @@ export default async function ProductPage({ params }) {
       </nav>
 
       <div className="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <ProductImage name={product.name} qd={product.qd} form={product.form} size="lg" />
+        <ProductGallery
+          name={product.name}
+          qd={product.qd}
+          form={product.form}
+          images={product.images || []}
+        />
 
         <div>
           {category && (

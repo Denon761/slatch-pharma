@@ -7,7 +7,12 @@ export default function ProductCard({ product }) {
   return (
     <div className="flex flex-col rounded-2xl border border-gray-100 bg-white p-4 shadow-sm hover:shadow-md hover:border-brand-200 transition">
       <Link href={`/product/${product.slug}`}>
-        <ProductImage name={product.name} qd={product.qd} form={product.form} />
+        <ProductImage
+          name={product.name}
+          qd={product.qd}
+          form={product.form}
+          image={product.images?.[0]}
+        />
       </Link>
       <div className="mt-4 flex-1">
         <Link href={`/product/${product.slug}`}>

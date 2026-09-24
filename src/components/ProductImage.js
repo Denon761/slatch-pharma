@@ -1,8 +1,17 @@
+import Image from "next/image";
 import { Leaf } from "lucide-react";
 
-// Stand-in "packaging" visual used everywhere a real product photo would go.
-export default function ProductImage({ name, qd, form, size = "md" }) {
+// Falls back to a "packaging" illustration for products without a real photo.
+export default function ProductImage({ name, qd, form, size = "md", image }) {
   const dims = size === "lg" ? "h-64" : size === "sm" ? "h-32" : "h-44";
+
+  if (image) {
+    return (
+      <div className={`relative ${dims} w-full rounded-lg overflow-hidden border border-brand-100 bg-white`}>
+        <Image src={image} alt={name} fill className="object-contain" />
+      </div>
+    );
+  }
 
   return (
     <div

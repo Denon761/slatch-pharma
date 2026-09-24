@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import CategoryIcon from "@/components/CategoryIcon";
-import { categories, getCategoryBySlug } from "@/lib/data";
+import ProductCard from "@/components/ProductCard";
+import { categories, getCategoryBySlug, getProductsByCategory } from "@/lib/data";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
@@ -24,7 +25,7 @@ export default async function CategoryPage({ params }) {
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const children = Array.isArray(category.children) ? category.children : [];
+  const products = getProductsByCategory(category.slug);
 
   return (
     <div className="container-page py-10">
@@ -61,17 +62,12 @@ export default async function CategoryPage({ params }) {
         </div>
       </div>
 
-      {children.length > 0 && (
-        <div className="mt-8 rounded-2xl border border-gray-200 bg-white p-5">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Level 2 Conditions</h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {children.map((child) => (
-              <span
-                key={child}
-                className="rounded-full border border-brand-100 bg-brand-50 px-3 py-1.5 text-sm text-brand-700"
-              >
-                {child}
-              </span>
+      {products.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-xl font-bold text-gray-900">Medicines in this Category</h2>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((p) => (
+              <ProductCard key={p.slug} product={p} />
             ))}
           </div>
         </div>
