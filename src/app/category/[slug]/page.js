@@ -36,9 +36,9 @@ export default async function CategoryPage({ params }) {
         <span className="text-gray-800">{category.name}</span>
       </nav>
 
-      <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-brand-50 border border-brand-100 p-6">
+      <div className="mt-6 flex flex-col md:flex-row items-center gap-6 rounded-2xl bg-white border border-gray-100 shadow-sm p-6 md:p-10">
         {category.image ? (
-          <span className="flex h-28 shrink-0 items-center">
+          <span className="flex h-24 md:h-36 lg:h-44 shrink-0 items-center justify-center">
             <Image
               src={category.image.src}
               alt={category.name}
@@ -55,7 +55,7 @@ export default async function CategoryPage({ params }) {
             <CategoryIcon name={category.icon} className="h-7 w-7" />
           </span>
         )}
-        <div>
+        <div className="text-center md:text-left">
           <h1 className="text-2xl font-bold text-gray-900">{category.name}</h1>
           <p className="mt-1 text-sm text-gray-600 max-w-2xl">{category.description}</p>
         </div>
