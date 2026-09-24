@@ -76,6 +76,11 @@ export default async function ProductPage({ params }) {
           <p className="mt-4 text-2xl font-extrabold text-brand-800">
             {formatPKR(product.price)}
           </p>
+
+          <div className="mt-6">
+            <AddToCartButton product={product} />
+          </div>
+
           <p className="mt-4 text-gray-600 leading-relaxed">{product.description}</p>
 
           {product.indication && (
@@ -86,10 +91,6 @@ export default async function ProductPage({ params }) {
               <p className="mt-1 text-sm text-brand-900">{product.indication}</p>
             </div>
           )}
-
-          <div className="mt-6">
-            <AddToCartButton product={product} />
-          </div>
 
           {product.highlights && product.highlights.length > 0 && (
             <div className="mt-8 border-t border-gray-100 pt-6">
