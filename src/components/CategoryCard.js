@@ -10,7 +10,7 @@ export default function CategoryCard({ category }) {
       className="group flex flex-col items-center text-center rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-md hover:border-brand-200 transition"
     >
       {category.image ? (
-        <div className="mb-4 flex h-24 shrink-0 items-center justify-center transition group-hover:scale-105">
+        <div className="mb-4 flex h-32 shrink-0 items-center justify-center transition group-hover:scale-105">
           <Image
             src={category.image.src}
             alt={category.name}

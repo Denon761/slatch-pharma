@@ -38,7 +38,7 @@ export default async function CategoryPage({ params }) {
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl bg-brand-50 border border-brand-100 p-6">
         {category.image ? (
-          <span className="flex h-20 shrink-0 items-center">
+          <span className="flex h-28 shrink-0 items-center">
             <Image
               src={category.image.src}
               alt={category.name}
