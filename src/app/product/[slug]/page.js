@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
 import ProductGallery from "@/components/ProductGallery";
 import AddToCartButton from "@/components/AddToCartButton";
+import BuyNowButton from "@/components/BuyNowButton";
 import ProductCard from "@/components/ProductCard";
 import {
   products,
@@ -76,8 +77,9 @@ export default async function ProductPage({ params }) {
             {formatPKR(product.price)}
           </p>
 
-          <div className="mt-6">
+          <div className="mt-6 flex flex-wrap gap-3">
             <AddToCartButton product={product} />
+            <BuyNowButton product={product} />
           </div>
 
           <p className="mt-4 text-gray-600 leading-relaxed">{product.description}</p>

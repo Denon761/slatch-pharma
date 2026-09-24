@@ -13,11 +13,14 @@ export default function CheckoutPage() {
   const { items, hydrated, subtotal, clearCart } = useCart();
   const [form, setForm] = useState({
     fullName: "",
+    email: "",
     phone: "",
     address: "",
     city: "",
     notes: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   if (hydrated && items.length === 0) {
     return (
@@ -38,11 +41,29 @@ export default function CheckoutPage() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const orderId = `SP-${Date.now().toString().slice(-8)}`;
-    clearCart();
-    router.push(`/checkout/success?order=${orderId}`);
+    setError("");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: form,
+          items: items.map((i) => ({ slug: i.slug, qty: i.qty })),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong placing your order.");
+      }
+      clearCart();
+      router.push(`/checkout/success?order=${data.orderId}`);
+    } catch (err) {
+      setError(err.message);
+      setSubmitting(false);
+    }
   }
 
   const total = subtotal + (items.length > 0 ? SHIPPING_FEE : 0);
@@ -62,6 +83,17 @@ export default function CheckoutPage() {
                   required
                   name="fullName"
                   value={form.fullName}
+                  onChange={handleChange}
+                  className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-300"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-700">Email Address</label>
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  value={form.email}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-300"
                 />
@@ -147,11 +179,16 @@ export default function CheckoutPage() {
             <span>Total</span>
             <span>{formatPKR(total)}</span>
           </div>
+          {error && (
+            <p className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>
+          )}
+
           <button
             type="submit"
-            className="mt-6 block w-full rounded-lg bg-brand-700 px-5 py-3 text-center font-semibold text-white hover:bg-brand-800 transition"
+            disabled={submitting}
+            className="mt-6 block w-full rounded-lg bg-brand-700 px-5 py-3 text-center font-semibold text-white hover:bg-brand-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Place Order
+            {submitting ? "Placing Order..." : "Place Order"}
           </button>
         </div>
       </form>

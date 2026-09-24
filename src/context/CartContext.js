@@ -62,6 +62,20 @@ export function CartProvider({ children }) {
     setItems((prev) => prev.filter((i) => i.slug !== slug));
   }
 
+  function buyNow(product, qty = 1) {
+    setItems([
+      {
+        slug: product.slug,
+        name: product.name,
+        qd: product.qd,
+        price: product.price,
+        size: product.size,
+        image: product.images?.[0],
+        qty,
+      },
+    ]);
+  }
+
   function clearCart() {
     setItems([]);
   }
@@ -88,6 +102,7 @@ export function CartProvider({ children }) {
     items,
     hydrated,
     addItem,
+    buyNow,
     updateQty,
     removeItem,
     clearCart,

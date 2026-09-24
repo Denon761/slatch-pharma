@@ -9,7 +9,8 @@ export default async function CheckoutSuccessPage({ searchParams }) {
       <CheckCircle2 className="mx-auto h-14 w-14 text-brand-600" />
       <h1 className="mt-6 text-3xl font-bold text-gray-900">Order Placed Successfully</h1>
       <p className="mt-2 text-gray-500">
-        Thank you for your order. We will contact you shortly to confirm delivery.
+        Thank you for your order. A confirmation email is on its way, and we will
+        contact you shortly to confirm delivery.
       </p>
       {order && (
         <p className="mt-4 inline-block rounded-full bg-brand-50 border border-brand-100 px-4 py-1.5 text-sm font-semibold text-brand-800">
