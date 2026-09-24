@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Leaf, Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
@@ -18,9 +18,22 @@ const NAV_LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const { count } = useCart();
+  const { count, openCart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onKeyDown(e) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   function handleSearch(e) {
     e.preventDefault();
@@ -90,28 +103,70 @@ export default function Header() {
               <User className="h-5 w-5" />
               <span className="hidden lg:inline">Account</span>
             </Link>
-            <Link href="/cart" className="relative flex items-center gap-1 text-sm text-gray-700 hover:text-brand-700">
+            <button
+              onClick={openCart}
+              aria-label={`Open cart, ${count} items`}
+              className="relative flex items-center gap-1 text-sm text-gray-700 hover:text-brand-700"
+            >
               <ShoppingCart className="h-5 w-5" />
               <span className="hidden lg:inline">Cart</span>
               <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 text-[10px] font-bold text-white">
                 {count}
               </span>
-            </Link>
+            </button>
           </div>
 
-          <button
-            className="lg:hidden p-2 text-gray-700"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              onClick={openCart}
+              aria-label={`Open cart, ${count} items`}
+              className="relative p-2 text-gray-700"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              <span className="absolute top-0.5 right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 text-[10px] font-bold text-white">
+                {count}
+              </span>
+            </button>
+            <button
+              className="p-2 text-gray-700"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {menuOpen && (
-        <div className="lg:hidden border-b border-gray-100 bg-white">
-          <div className="container-page py-4 flex flex-col gap-4">
+      <div
+        className={`fixed inset-0 z-50 lg:hidden ${menuOpen ? "" : "pointer-events-none"}`}
+        aria-hidden={!menuOpen}
+      >
+        <div
+          onClick={() => setMenuOpen(false)}
+          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className={`absolute right-0 top-0 flex h-full w-full max-w-xs flex-col bg-white shadow-xl transition-transform duration-300 ease-out ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+            <span className="font-bold text-brand-800">Menu</span>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="p-1.5 text-gray-400 hover:text-gray-700"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto px-5 py-5">
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
@@ -122,19 +177,37 @@ export default function Header() {
               />
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
             </form>
-            <nav className="flex flex-col gap-3 text-sm font-medium">
+            <nav className="mt-6 flex flex-col gap-4 text-sm font-medium">
               {NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-brand-700">
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-gray-700 hover:text-brand-700"
+                >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/cart" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-brand-700">
-                Cart ({count})
+              <Link
+                href="/account"
+                onClick={() => setMenuOpen(false)}
+                className="text-gray-700 hover:text-brand-700"
+              >
+                Account
               </Link>
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  openCart();
+                }}
+                className="text-left text-gray-700 hover:text-brand-700"
+              >
+                Cart ({count})
+              </button>
             </nav>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

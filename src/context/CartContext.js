@@ -8,6 +8,8 @@ const STORAGE_KEY = "slatch_cart_v1";
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
   const [hydrated, setHydrated] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     try {
@@ -40,10 +42,12 @@ export function CartProvider({ children }) {
           qd: product.qd,
           price: product.price,
           size: product.size,
+          image: product.images?.[0],
           qty,
         },
       ];
     });
+    setNotification({ id: Date.now(), name: product.name, qty });
   }
 
   function updateQty(slug, qty) {
@@ -62,6 +66,18 @@ export function CartProvider({ children }) {
     setItems([]);
   }
 
+  function openCart() {
+    setDrawerOpen(true);
+  }
+
+  function closeCart() {
+    setDrawerOpen(false);
+  }
+
+  function dismissNotification() {
+    setNotification(null);
+  }
+
   const count = useMemo(() => items.reduce((sum, i) => sum + i.qty, 0), [items]);
   const subtotal = useMemo(
     () => items.reduce((sum, i) => sum + i.qty * i.price, 0),
@@ -77,6 +93,11 @@ export function CartProvider({ children }) {
     clearCart,
     count,
     subtotal,
+    drawerOpen,
+    openCart,
+    closeCart,
+    notification,
+    dismissNotification,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

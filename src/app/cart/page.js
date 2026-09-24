@@ -31,14 +31,17 @@ export default function CartPage() {
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 divide-y divide-gray-100 border-y border-gray-100">
           {items.map((item) => (
-            <div key={item.slug} className="flex items-center gap-4 py-5">
+            <div
+              key={item.slug}
+              className="flex flex-wrap items-center gap-4 py-5 sm:flex-nowrap"
+            >
               <Link
                 href={`/product/${item.slug}`}
                 className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-brand-50 border border-brand-100 text-[10px] font-bold text-brand-700 text-center px-1"
               >
                 {item.qd}
               </Link>
-              <div className="flex-1 min-w-0">
+              <div className="min-w-40 flex-1">
                 <Link href={`/product/${item.slug}`} className="font-semibold text-gray-900 hover:text-brand-700 line-clamp-1">
                   {item.name}
                 </Link>
@@ -46,35 +49,37 @@ export default function CartPage() {
                 <p className="mt-1 font-semibold text-brand-800">{formatPKR(item.price)}</p>
               </div>
 
-              <div className="flex items-center gap-2 rounded-lg border border-gray-200">
+              <div className="ml-auto flex items-center gap-3 sm:ml-0">
+                <div className="flex items-center gap-2 rounded-lg border border-gray-200">
+                  <button
+                    onClick={() => updateQty(item.slug, item.qty - 1)}
+                    className="p-2 text-gray-600 hover:text-brand-700"
+                    aria-label="Decrease quantity"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="w-6 text-center text-sm font-medium">{item.qty}</span>
+                  <button
+                    onClick={() => updateQty(item.slug, item.qty + 1)}
+                    className="p-2 text-gray-600 hover:text-brand-700"
+                    aria-label="Increase quantity"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+
                 <button
-                  onClick={() => updateQty(item.slug, item.qty - 1)}
-                  className="p-2 text-gray-600 hover:text-brand-700"
-                  aria-label="Decrease quantity"
+                  onClick={() => removeItem(item.slug)}
+                  className="p-2 text-gray-400 hover:text-red-600"
+                  aria-label="Remove item"
                 >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="w-6 text-center text-sm font-medium">{item.qty}</span>
-                <button
-                  onClick={() => updateQty(item.slug, item.qty + 1)}
-                  className="p-2 text-gray-600 hover:text-brand-700"
-                  aria-label="Increase quantity"
-                >
-                  <Plus className="h-4 w-4" />
+                  <Trash2 className="h-4 w-4" />
                 </button>
               </div>
 
-              <p className="w-24 text-right font-semibold text-gray-900">
+              <p className="w-full text-right font-semibold text-gray-900 sm:w-24">
                 {formatPKR(item.price * item.qty)}
               </p>
-
-              <button
-                onClick={() => removeItem(item.slug)}
-                className="p-2 text-gray-400 hover:text-red-600"
-                aria-label="Remove item"
-              >
-                <Trash2 className="h-4 w-4" />
-              </button>
             </div>
           ))}
         </div>
