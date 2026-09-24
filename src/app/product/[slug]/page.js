@@ -78,9 +78,32 @@ export default async function ProductPage({ params }) {
           </p>
           <p className="mt-4 text-gray-600 leading-relaxed">{product.description}</p>
 
+          {product.indication && (
+            <div className="mt-4 rounded-lg bg-brand-50 border border-brand-100 px-4 py-3">
+              <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-700">
+                Indication
+              </h3>
+              <p className="mt-1 text-sm text-brand-900">{product.indication}</p>
+            </div>
+          )}
+
           <div className="mt-6">
             <AddToCartButton product={product} />
           </div>
+
+          {product.highlights && product.highlights.length > 0 && (
+            <div className="mt-8 border-t border-gray-100 pt-6">
+              <h3 className="font-semibold text-gray-900">Why Choose {product.name}?</h3>
+              <ul className="mt-2 space-y-1.5">
+                {product.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2 text-sm text-gray-600">
+                    <span className="mt-0.5 text-brand-600">✔</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="mt-8 space-y-4 border-t border-gray-100 pt-6">
             <div>
@@ -91,7 +114,48 @@ export default async function ProductPage({ params }) {
               <h3 className="font-semibold text-gray-900">Key Ingredients</h3>
               <p className="mt-1 text-sm text-gray-600">{product.ingredients}</p>
             </div>
+            {product.storage && (
+              <div>
+                <h3 className="font-semibold text-gray-900">Storage Instructions</h3>
+                <p className="mt-1 text-sm text-gray-600">{product.storage}</p>
+              </div>
+            )}
           </div>
+
+          {(product.regulatory || product.manufacturedBy || product.marketedBy) && (
+            <div className="mt-8 border-t border-gray-100 pt-6">
+              <h3 className="font-semibold text-gray-900">Regulatory & Manufacturing Information</h3>
+              <dl className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+                {product.regulatory && (
+                  <>
+                    <div className="sm:col-span-2 text-gray-600">
+                      Registered with {product.regulatory.authority}
+                    </div>
+                    <div>
+                      <dt className="inline text-gray-500">DRAP Enlistment No.: </dt>
+                      <dd className="inline text-gray-800">{product.regulatory.enlistmentNo}</dd>
+                    </div>
+                    <div>
+                      <dt className="inline text-gray-500">Form 7 No.: </dt>
+                      <dd className="inline text-gray-800">{product.regulatory.form7No}</dd>
+                    </div>
+                  </>
+                )}
+                {product.manufacturedBy && (
+                  <div>
+                    <dt className="inline text-gray-500">Manufactured By: </dt>
+                    <dd className="inline text-gray-800">{product.manufacturedBy}</dd>
+                  </div>
+                )}
+                {product.marketedBy && (
+                  <div>
+                    <dt className="inline text-gray-500">Marketed By: </dt>
+                    <dd className="inline text-gray-800">{product.marketedBy}</dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          )}
 
           <p className="mt-6 text-xs text-gray-400">
             This information is provided for general awareness only and does not

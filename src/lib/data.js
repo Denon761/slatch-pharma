@@ -152,8 +152,8 @@ export const categories = [
 
 export const products = [
   {
-    slug: "majun-mughalliz-jawahir",
-    name: "Majun Mughalliz Jawahir",
+    slug: "bdk-razont-capsule",
+    name: "BDK Razont Capsule",
     qd: "QD 3068",
     category: "digestive-stomach-disorders",
     images: [
@@ -162,12 +162,29 @@ export const products = [
       "/images/products/qd3068/3.jpeg",
     ],
     price: 999,
-    form: "Paste (Majun)",
-    size: "125 g",
+    form: "Capsule",
+    size: "20 Capsules",
     description:
-      "A traditional Jawahir-based Majun formulated to support general vigor and vitality in men.",
-    usage: "Take 3-5 g once daily with milk, or as directed by your physician.",
-    ingredients: "Jawahir (gem-based) compound blended with traditional herbs and gum base.",
+      "BDK Razont Capsule is a DRAP registered herbal medicine specially formulated for individuals experiencing piles (hemorrhoids) related pain, discomfort and irritation. It contains a combination of traditionally used herbal ingredients designed to provide supportive relief from piles-related symptoms and help improve daily comfort.",
+    indication: "For the relief of piles (hemorrhoids) pain and associated discomfort.",
+    highlights: [
+      "Specially formulated for piles-related pain and discomfort",
+      "Helps relieve piles-associated irritation and discomfort",
+      "Supports comfort during hemorrhoidal symptoms",
+      "Herbal formulation prepared with traditionally used ingredients",
+      "Convenient capsule dosage form for regular use",
+    ],
+    usage: "Take 1 capsule in the morning and 1 capsule at night after meals, or as directed by your physician.",
+    ingredients:
+      "Azadirachta indica (Neem) 15 mg, Raphanus sativus (Radish) 55 mg, Aegle marmelos (Bael) 200 mg, Berberis aristata (Daruharidra) 200 mg, Terminalia chebula (Haritaki) 80 mg.",
+    regulatory: {
+      authority: "Drug Regulatory Authority of Pakistan (DRAP)",
+      enlistmentNo: "01519",
+      form7No: "015191430244",
+    },
+    manufacturedBy: "BDK Laboratories",
+    marketedBy: "Slatch Pharmaceuticals, Sialkot",
+    storage: "Store in a cool and dry place, away from direct sunlight. Keep out of reach of children.",
   },
 ];
 
