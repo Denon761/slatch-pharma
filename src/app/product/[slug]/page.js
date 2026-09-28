@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
   const product = getProductBySlug(slug);
   if (!product) return {};
   return {
-    title: `${product.name} (${product.qd}) | Slatch Pharmaceuticals`,
+    title: `${product.name} | Slatch Pharmaceuticals`,
     description: product.description,
   };
 }
@@ -71,7 +71,7 @@ export default async function ProductPage({ params }) {
             </Link>
           )}
           <h1 className="mt-2 text-3xl font-bold text-gray-900">
-            {product.shortName || product.name} {product.qd}
+            {product.name}
           </h1>
           <p className="mt-4 text-2xl font-extrabold text-brand-800">
             {formatPKR(product.price)}

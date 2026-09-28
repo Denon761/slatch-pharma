@@ -153,8 +153,7 @@ export const categories = [
 export const products = [
   {
     slug: "bdk-razont-capsule",
-    name: "BDK Razont Capsule",
-    shortName: "BDK Razont Cap",
+    name: "Razont QD 3068 Capsules",
     qd: "QD 3068",
     category: "digestive-stomach-disorders",
     images: [
@@ -167,7 +166,7 @@ export const products = [
     size: "20 Capsules",
     productCategory: "Herbal Medicine",
     description:
-      "BDK Razont Capsule is a DRAP registered herbal medicine specially formulated for individuals experiencing piles (hemorrhoids) related pain, discomfort and irritation. It contains a combination of traditionally used herbal ingredients designed to provide supportive relief from piles-related symptoms and help improve daily comfort.",
+      "Razont QD 3068 Capsules is a DRAP registered herbal medicine specially formulated for individuals experiencing piles (hemorrhoids) related pain, discomfort and irritation. It contains a combination of traditionally used herbal ingredients designed to provide supportive relief from piles-related symptoms and help improve daily comfort.",
     indication: "For the relief of piles (hemorrhoids) pain and associated discomfort.",
     highlights: [
       "Specially formulated for piles-related pain and discomfort",
@@ -190,7 +189,7 @@ export const products = [
     importantNote:
       "Use this medicine according to the recommended dosage or advice of a qualified healthcare professional. If symptoms persist or worsen, consult your physician.",
     tagline: {
-      title: "BDK Razont Capsule Herbal Support for Piles Pain Relief",
+      title: "Razont QD 3068 Capsules Herbal Support for Piles Pain Relief",
       text: "Specially formulated to help relieve piles-related pain and discomfort and support better daily comfort.",
     },
   },

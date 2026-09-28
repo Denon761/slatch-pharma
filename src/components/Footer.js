@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Leaf } from "lucide-react";
+import Image from "next/image";
 import { categories } from "@/lib/data";
 
 export default function Footer() {
@@ -10,9 +10,13 @@ export default function Footer() {
       <div className="container-page grid grid-cols-1 gap-10 py-12 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-700 text-white">
-              <Leaf className="h-6 w-6" />
-            </span>
+            <Image
+              src="/images/1354.jpeg"
+              alt="Slatch Pharmaceuticals"
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-full object-contain bg-white"
+            />
             <span className="text-lg font-extrabold tracking-wide text-white">SLATCH PHARMACEUTICALS</span>
           </div>
           <p className="mt-4 text-sm text-brand-200">

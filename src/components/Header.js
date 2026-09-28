@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Leaf, Search, User, ShoppingCart, Menu, X } from "lucide-react";
+import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = [
@@ -55,18 +56,14 @@ export default function Header() {
       <div className="border-b border-gray-100">
         <div className="container-page flex items-center justify-between gap-4 py-3">
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 text-white">
-              <Leaf className="h-7 w-7" />
-            </span>
-            <span className="leading-tight">
-              <span className="block font-extrabold tracking-wide text-brand-800 text-2xl">
-                SLATCH
-              </span>
-              <span className="block text-xs font-semibold tracking-wider text-gray-500 -mt-1">
-                PHARMACEUTICALS<sup>&reg;</sup>
-              </span>
-              <span className="block text-xs text-brand-600 -mt-0.5">Herbal Medicines</span>
-            </span>
+            <Image
+              src="/images/1354.jpeg"
+              alt="Slatch Pharmaceuticals"
+              width={56}
+              height={56}
+              className="h-14 w-14 object-contain"
+              priority
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
