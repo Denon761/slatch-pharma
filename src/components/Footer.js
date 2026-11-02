@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { categories } from "@/lib/data";
+import { PHONE_DISPLAY, PHONE_TEL } from "@/lib/site";
 
 export default function Footer() {
   const topCategories = categories.slice(0, 6);
@@ -24,6 +25,10 @@ export default function Footer() {
             dedicated to making established herbal medicines more accessible to customers
             across Pakistan through professional marketing, reliable distribution, clear
             product information, and a transparent retail experience.
+          </p>
+          <p className="mt-4 text-sm">
+            <span className="text-brand-300">Call us: </span>
+            <a href={PHONE_TEL} className="font-semibold text-white hover:underline">{PHONE_DISPLAY}</a>
           </p>
         </div>
 
