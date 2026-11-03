@@ -24,7 +24,7 @@ export default function CartToast() {
 
   return (
     <div
-      className={`fixed bottom-5 right-5 z-60 w-[calc(100%-2.5rem)] max-w-sm rounded-xl border border-gray-100 bg-white p-4 shadow-lg transition-all duration-300 ${
+      className={`fixed bottom-24 right-5 z-60 w-[calc(100%-2.5rem)] max-w-sm rounded-xl border border-gray-100 bg-white p-4 shadow-lg transition-all duration-300 ${
         visible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
       role="status"
